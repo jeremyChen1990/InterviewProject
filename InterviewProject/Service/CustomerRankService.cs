@@ -15,7 +15,7 @@ namespace InterviewProject.Service
 
         private readonly ReaderWriterLockSlim _lock = new();
 
-        private readonly ConcurrentDictionary<long, Customer> _customerDic = new ConcurrentDictionary<long, Customer>();
+        public ConcurrentDictionary<long, Customer> _customerDic = new ConcurrentDictionary<long, Customer>();
 
         public decimal AddOrUpdateScoreToCustomer(long customerId, decimal score = 0)
         {
@@ -131,6 +131,7 @@ namespace InterviewProject.Service
         /// <param name="low">optional. Default zero. number of neighbors whose rank is lower than the specified customer.</param>
         /// <returns>customers and currently rank</returns>
         List<CustomerModel> GetCustomersById(long customerId, int high = 0, int low = 0);
+
     }
 
     public class LeaderboardCompare : IComparer<(decimal score, long customerId)>

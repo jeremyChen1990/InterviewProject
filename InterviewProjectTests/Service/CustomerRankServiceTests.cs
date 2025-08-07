@@ -18,9 +18,20 @@ namespace InterviewProject.Service.Tests
             _service = new CustomerRankService();
         }
 
+        private void InitTestData()
+        {
+           var customService=_service as CustomerRankService;
+            if (customService != null)
+            {
+                customService._customerDic.Clear();
+                CustomerRankService._leaderboard.Clear();
+            }
+        }
+
         [TestMethod()]
         public void AddOrUpdateScoreToCustomerTest()
         {
+            InitTestData();
             //test case for params verify
             long customerId = 1;
             decimal score = 10000;
@@ -40,6 +51,8 @@ namespace InterviewProject.Service.Tests
         [TestMethod()]
         public void GetCustomersByRankTest()
         {
+            InitTestData();
+
             //test case for params verify
             int start=0, end=0;
             Assert.ThrowsException<ArgumentException>(()=>_service.GetCustomersByRank(start, end));
@@ -70,6 +83,7 @@ namespace InterviewProject.Service.Tests
         [TestMethod()]
         public void GetCustomersByIdTest()
         {
+            InitTestData();
             //test case for params verify
             Assert.ThrowsException<NotFoundException>(() => _service.GetCustomersById(customerId:10000));
 
@@ -105,6 +119,7 @@ namespace InterviewProject.Service.Tests
         [TestMethod()]
         public void GetCustomersByRankTest_with_same_score()
         {
+            InitTestData();
             //init test data
             var lowest = (1, 10);
             var highest = (2, 10);
