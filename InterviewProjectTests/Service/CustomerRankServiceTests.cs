@@ -25,7 +25,8 @@ namespace InterviewProject.Service.Tests
             {
                 customService._customerDic.Clear();
                 CustomerRankService._leaderboard.Clear();
-            }
+                customService._leaderboardSnapshotBlocks.Clear();
+    }
         }
 
         [TestMethod()]

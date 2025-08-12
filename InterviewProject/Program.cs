@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<ICustomerRankService, CustomerRankService>();
+builder.Services.AddSingleton<ICustomerRankService, CustomerRankService>();
 
 var app = builder.Build();
 
